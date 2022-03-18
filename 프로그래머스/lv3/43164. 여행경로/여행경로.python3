@@ -1,0 +1,16 @@
+from collections import defaultdict 
+def solution(tickets):
+        graph = defaultdict(list)
+        tickets.sort() 
+        for a, b in tickets:
+            graph[a].append(b)
+
+        stack = ['ICN']
+        route = []
+        while stack: 
+
+            while graph[stack[-1]]:
+                    stack.append( graph[ stack[-1] ].pop(0) )
+            route.append(stack.pop())
+
+        return  route[::-1]
