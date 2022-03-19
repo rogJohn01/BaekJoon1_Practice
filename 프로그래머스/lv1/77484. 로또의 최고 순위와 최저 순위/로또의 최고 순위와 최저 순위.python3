@@ -1,0 +1,8 @@
+def solution(lottos, win_nums):
+    cnt = 0 
+    dic = {2:5,3:4,4:3,5:2,6:1}
+    for e in lottos:
+        if e in win_nums:
+            cnt+=1 
+    z = lottos.count(0)
+    return [  dic.get(cnt+z , 6)   ,dic.get(cnt ,6) ]
