@@ -5,8 +5,7 @@ def sol(s,k):
         while st and st[-1] <e and k:
             st.pop()
             k -=1 
-        if st or e != '0':
-            st.append(e)
+        st.append(e)
 
     if k:
         st =st[0:-k]
