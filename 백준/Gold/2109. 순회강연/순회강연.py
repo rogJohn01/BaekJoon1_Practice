@@ -1,20 +1,15 @@
 import sys 
 input = sys.stdin.readline
 
+
+import heapq as hq
 n = int(input())
-
-lectures = [ list(map(int, input().split() )) for _ in range(n)]
-
-lectures.sort( key = lambda x: -x[0])
-days = [0]*10001
-
-cnt = 0 
+lectures = [ list(map(int,input().split()))  for _ in range(n)] 
+lectures.sort( key =lambda x: x[1])
+hqlist = [] 
 for lect in lectures:
-    for i in range(lect[1],0,-1):
-
-        if days[i] ==0:
-            days[i] =1
-            cnt += lect[0]
-            break
-
-print(cnt)
+    hq.heappush(hqlist, lect[0])
+    if (len(hqlist) > lect[1]):
+        hq.heappop(hqlist)
+        
+print(sum(hqlist))
