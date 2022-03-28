@@ -1,4 +1,5 @@
 import sys 
+input =sys.stdin.readline 
 grid = [ list(map(int, input().split()))  for _ in range(19)]
 
 
