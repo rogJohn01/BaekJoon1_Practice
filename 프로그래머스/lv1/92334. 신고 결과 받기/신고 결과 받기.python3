@@ -1,0 +1,17 @@
+def solution(id_list, report, k):
+    
+    from collections import Counter 
+    from collections import defaultdict 
+    counter = Counter(report)
+    dic = defaultdict(int)
+    for c in counter:    
+        dic[c.split()[1] ] +=1 
+
+    ansBox = [  key for key, value in dic.items()  if value>=k]
+
+    retDic = {  n:0 for  n in id_list }
+    for c in counter:
+        if c.split()[1] in ansBox:
+             retDic[ c.split()[0] ] +=1 
+
+    return list( retDic.values() )
