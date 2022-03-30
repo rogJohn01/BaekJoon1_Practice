@@ -1,0 +1,5 @@
+-- 코드를 입력하세요
+
+select c1.cart_id from cart_products c1 join cart_products c2 
+on c1.cart_id = c2.cart_id 
+where c1.name ='Milk' and c2.name = 'Yogurt'
