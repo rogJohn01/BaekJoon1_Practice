@@ -1,0 +1,21 @@
+def solution(board, moves):
+    box = [] 
+    for m in moves:
+        for b in board:
+
+            
+            if  b[m-1] != 0:
+                box.append(b[m-1])
+                b[m-1] = 0 
+                break 
+
+    stack = [] 
+    cnt = 0 
+    for s in box:
+        
+        if stack and s == stack[-1] :
+            stack.pop()
+            cnt +=2 
+        else:
+            stack.append(s)
+    return cnt
