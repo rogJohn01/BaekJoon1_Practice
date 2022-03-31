@@ -1,0 +1,4 @@
+def solution(n, m):
+    from math import gcd
+    
+    return [gcd(n,m) , (n*m)//gcd(n,m) ]
