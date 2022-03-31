@@ -1,0 +1,12 @@
+def solution(arr1, arr2):
+    
+    r1 = len(arr1) ; c1 = len(arr1[0])
+    c2 =len(arr2[0])
+    ans = [[0]*c2 for _ in range(r1)]
+    for c in range(c2):
+        for r in range(r1):
+            cnt =0
+            for i in range(c1):
+                cnt += arr1[r][i] * arr2[i][c]
+            ans[r][c] = cnt 
+    return ans
