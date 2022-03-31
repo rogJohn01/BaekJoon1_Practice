@@ -1,0 +1,5 @@
+def solution(s):
+    from collections import Counter
+
+ 
+    return  Counter(s.lower())['p'] == Counter(s.lower())['y']
