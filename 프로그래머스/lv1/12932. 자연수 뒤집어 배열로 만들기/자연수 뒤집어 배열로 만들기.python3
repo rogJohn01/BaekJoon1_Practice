@@ -1,0 +1,8 @@
+def solution(n):
+   
+
+
+    return [ int(e)  for e in str(n) ][::-1]
+
+
+   # return list(map(int , list(str(n)[::-1])))
