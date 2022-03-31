@@ -1,0 +1,11 @@
+def solution(arr):
+    
+    ret = [] 
+    for a in arr:
+        
+        if a in ret and ret[-1] !=a:
+            ret.append(a)
+        
+        if a not in ret:
+            ret.append(a)
+    return ret
