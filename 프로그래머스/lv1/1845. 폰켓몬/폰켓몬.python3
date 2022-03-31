@@ -1,0 +1,8 @@
+def solution(nums):
+   
+
+    from collections import Counter 
+    cntr = Counter(nums) 
+    k = len(nums)//2
+
+    return len(cntr) if k > len(cntr) else k 
