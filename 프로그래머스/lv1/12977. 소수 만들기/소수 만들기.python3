@@ -1,0 +1,19 @@
+def solution(nums):
+    from itertools import combinations
+    def isPrime(x):
+        import math
+
+        if x <=1: # be aware of 1 
+            return False 
+        
+        for i in range(2, int(math.sqrt(x)+1)):
+            if x % i ==0:
+                return False 
+        return True 
+    cnt = 0 
+    cl = list(combinations( nums ,3 ))
+    cl2 = list(map(sum , cl))
+    for e in cl2: 
+        if isPrime(e):
+            cnt +=1 
+    return cnt
