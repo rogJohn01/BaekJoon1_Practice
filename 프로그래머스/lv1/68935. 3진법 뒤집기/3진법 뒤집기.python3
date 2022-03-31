@@ -1,0 +1,7 @@
+def solution(a):
+    
+    ret = ''
+    while a: 
+      ret   += str(a % 3)
+      a  //= 3 
+    return int (ret , 3  )
