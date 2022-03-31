@@ -1,0 +1,7 @@
+def solution(m,day):
+        sd= 4
+        dic = ['SUN','MON','TUE','WED','THU','FRI','SAT']
+        days = [31,29,31,30,31,30,31,31,30,31,30,31]
+
+        date = day+sum(days[:m-1])
+        return dic[ (date+sd) % 7  ] # 여기서 실수를 한듯 !
