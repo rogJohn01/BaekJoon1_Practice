@@ -1,0 +1,40 @@
+def solution(numbers, hand):
+    
+        def manhat(loco1 ,loco2):
+                dist = 0
+                for i in range(2):
+                    dist += abs(loco1[i]-loco2[i])
+                return dist 
+
+
+        dic = {  (n+1):[n//3, n%3]  for n in range(9)}
+        dic[0] = [3,1]
+        leftnum = [1,4,7]
+        rightnum = [3,6,9] 
+        res = [] 
+        lefth = [3,0]
+        righth = [3,2]
+        for n in numbers: 
+            if n in leftnum:
+                res.append('L')
+                lefth = dic[n]
+            elif n in rightnum:
+                res.append('R')
+                righth = dic[n]
+            else: 
+                dest = dic[n]
+                if manhat(lefth,dest) < manhat(righth ,dest):
+                    res.append('L')
+                    lefth = dest 
+                elif  manhat(lefth,dest) > manhat(righth ,dest): 
+                    res.append('R')
+                    righth =dest 
+                else:
+                    if hand =='right':
+                        res.append('R')
+                        righth =dest 
+                    else:
+                        res.append('L')
+                        lefth = dest 
+                        
+        return ''.join(res)
