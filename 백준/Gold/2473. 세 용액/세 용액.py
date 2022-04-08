@@ -1,34 +1,26 @@
-
-
-
-
-import sys 
+import sys
 input = sys.stdin.readline 
 
 n = int(input())
-nums = list(map(int, input().split()))
-nums.sort()
+array = list(map(int, input().split()))
 
-def threePointer(nums):
-    
-    minv = float('inf')
-    for i in range(len(nums)):
+array.sort()
+minTake = sys.maxsize
 
-        l = i+1 ; r = len(nums)-1
-        while l <r:
-
-            sumv = nums[i] + nums[l]+nums[r]
+for i in range(n-2):
+    start = i + 1
+    end = n - 1
+    while start < end:
+        take = array[i] + array[start] + array[end]
+        if abs(take) < minTake:
+            minTake = abs(take)
+            result = [array[i], array[start], array[end]]
+        if take < 0:
+            start += 1
+        elif take > 0:
+            end -= 1
+        else:
+            result = [array[i], array[start], array[end]]
+            break
             
-            if abs(sumv) < minv:
-                minv = abs(sumv)
-                ans = [ nums[i], nums[l], nums[r] ] 
-                if sumv ==0:
-                    return ans 
-
-            elif sumv > 0:
-                r -=1 
-            elif sumv <0:
-                l +=1  
-    return ans
-
-print(*threePointer(nums) )
+print(result[0], result[1], result[2])
