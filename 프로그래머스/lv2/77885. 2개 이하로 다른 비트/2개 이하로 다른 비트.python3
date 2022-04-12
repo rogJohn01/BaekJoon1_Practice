@@ -1,0 +1,15 @@
+def solution(numbers):
+    answer = []
+    
+    for number in numbers:
+        number = int(number)
+        if number%2 == 0: # number가 짝수이면 1을 더하면 끝
+            answer.append(number + 1)
+            continue
+        n = bin(number)[2:][::-1] + '0' # 2진수 역순으로 표현
+        zero = n.find('0') # 최초 0의 index
+        n = (n[:zero-1]+'01'+n[zero+1:])[::-1] # 1 0 -> 0 1 바꾼 후 다시 역순으로 돌림
+        answer.append(int(n, 2)) # 10진수로 변경 후 list에 추가
+        
+    return answer
+        
