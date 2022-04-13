@@ -1,15 +1,9 @@
-import sys 
-input = sys.stdin.readline 
+import sys, bisect
+n = int(sys.stdin.readline())
+arr = list(map(int, sys.stdin.readline().split()))
+inc_arr = [sys.maxsize]*n
 
-x = int(input())
-
-arr = list(map(int, input().split()))
-
-dp = [1 for i in range(x)]
-
-for i in range(x):
-    for j in range(i):
-        if arr[i] > arr[j]:
-            dp[i] = max(dp[i], dp[j]+1)
-
-print(max(dp))
+for i in range(0,n):
+    idx = bisect.bisect_left(inc_arr, arr[i])
+    inc_arr[idx] = arr[i]
+print(bisect.bisect_left(inc_arr, sys.maxsize))
