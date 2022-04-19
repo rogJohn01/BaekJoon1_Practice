@@ -1,10 +1,10 @@
 # [level 1] 예산 - 12982 
 
-[문제 링크](https://programmers.co.kr/learn/courses/30/lessons/12982) 
+[문제 링크](https://programmers.co.kr/learn/courses/30/lessons/12982?language=cpp) 
 
 ### 성능 요약
 
-메모리: 10.2 MB, 시간: 0.01 ms
+메모리: 4.05 MB, 시간: 0.01 ms
 
 ### 구분
 
