@@ -13,7 +13,5 @@ int helper(int n) {
 }
 bool solution(int x) {
     
-    if (x % helper(x) ==0)  return true ; 
-    else return false ; 
-
+	return x % helper(x) == 0 ? true : false ; 
 }
