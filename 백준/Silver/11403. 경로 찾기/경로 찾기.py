@@ -1,24 +1,22 @@
+
 import sys 
-input = sys.stdin.readline 
+input = sys.stdin.readline
 
 N = int(input())
-graph = []
-for _ in range(N):
-    graph.append(list(map(int, input().split())))
-    
-    
-#플로이드-워셜 알고리즘
-for k in range(N): #경로 for문이 가장 상위 단계여야 누락되지 않는다
-    for i in range(N):
-        for j in range(N): 
-            if graph[i][j] == 1 or (graph[i][k] == 1 and graph[k][j] == 1):
-                graph[i][j] = 1
+
+mat= [ list( map(int,input().split())) for _ in range(N) ]
 
 
-#출력
-for row in graph:
-    for col in row:
-        print(col, end = " ")
+for k in range(N):
+    for r in range(N):
+        for c in range(N):
+            if mat[r][c] or ( mat[r][k] and mat[k][c]):
+                mat[r][c] =1 
+
+
+
+
+for r in range(N):
+    for c in range(N):
+        print( mat[r][c] ,end=' ')
     print()
-
-
