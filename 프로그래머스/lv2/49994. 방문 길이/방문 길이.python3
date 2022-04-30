@@ -1,0 +1,23 @@
+def solution(dirs):
+
+
+
+
+    dirc= {'L':[0,-1], 'U':[1,0] , 'R':[0,1] , 'D':[-1,0]  }
+
+    sx , sy = 0 ,0
+    px , py = 0,0 
+    visit = set() 
+    for d in dirs:
+        a, b =  dirc[d]
+        sx  += a ; sy +=b 
+        if  -5 > sx or sx > 5 or   -5 > sy or sy > 5:
+            sx -=a ; sy -=b 
+            continue 
+        if (px ,py, sx,sy) not in visit and (sx, sy,px,py)  not in visit:
+            visit.add( (px,py,sx,sy) ) 
+            visit.add( (sx, sy,px,py) ) 
+
+        px , py = sx, sy 
+    return len(visit)//2 
+
