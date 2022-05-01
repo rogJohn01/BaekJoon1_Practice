@@ -1,0 +1,43 @@
+import heapq as hq 
+
+def solution(N, road, K):
+
+
+    def dijkstra(start):
+
+        q = [] 
+        ans[start] = 0 
+        hq.heappush(q , [0,start] ) 
+
+        while q: 
+
+            cw , cnode = hq.heappop(q) 
+
+            if ans[cnode] < cw:
+                continue 
+
+            for nnode , w in graph[cnode]:
+                nw = cw +w 
+
+                if nw < ans[nnode]:
+                    ans[nnode] = nw 
+                    hq.heappush( q, [nw, nnode ] ) 
+
+
+    inf = float('inf') 
+    graph = [[] for _ in range(N+1) ] 
+
+    ans = [inf]*(N+1) 
+
+
+    for a , b, cost in road:
+        graph[a].append([b,cost ] ) 
+        graph[b].append([a,cost] ) 
+
+    dijkstra(1) 
+    cnt = 0 
+    for a in ans:
+        if a <=K: 
+            cnt +=1 
+    return cnt 
+
