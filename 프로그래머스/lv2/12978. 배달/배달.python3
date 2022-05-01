@@ -35,9 +35,5 @@ def solution(N, road, K):
         graph[b].append([a,cost] ) 
 
     dijkstra(1) 
-    cnt = 0 
-    for a in ans:
-        if a <=K: 
-            cnt +=1 
-    return cnt 
-
+  
+    return sum(1  for a in ans  if a<=K )
