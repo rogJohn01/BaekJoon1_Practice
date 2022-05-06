@@ -1,8 +1,12 @@
--- 코드를 입력하세요
+-- 코드를 
 
-
-select p1.id , p1.name ,  p1.host_id from  places p1 join places p2 
+select p1.* from places p1 join places p2 
 on p1.host_id = p2.host_id 
 where p1.id !=p2.id 
 group by p1.id
-order by p1.id 
+order by p1.id
+
+
+
+
+
