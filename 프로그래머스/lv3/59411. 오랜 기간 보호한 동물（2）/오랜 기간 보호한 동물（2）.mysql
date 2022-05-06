@@ -1,4 +1,7 @@
 select ao.animal_id , ao.name from animal_ins ai right join animal_outs ao 
 on ao.animal_id = ai.animal_id 
-order by datediff(ao.datetime , ai.datetime) desc 
+order by ao.datetime - ai.datetime desc 
 limit 2 
+
+#order by datediff(ao.datetime , ai.datetime) desc 
+#limit 2
