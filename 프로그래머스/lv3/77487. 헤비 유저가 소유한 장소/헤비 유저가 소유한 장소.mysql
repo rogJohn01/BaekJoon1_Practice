@@ -1,12 +1,7 @@
 -- 코드를 
 
-select p1.* from places p1 join places p2 
+SELECT p1.* FROM PLACES p1 join places p2 
 on p1.host_id = p2.host_id 
 where p1.id !=p2.id 
-group by p1.id
-order by p1.id
-
-
-
-
-
+GROUP BY p1.id 
+order by p1.id 
