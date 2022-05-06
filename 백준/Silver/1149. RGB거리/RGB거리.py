@@ -1,24 +1,11 @@
-import sys 
-input = sys.stdin.readline
+import sys
+read = sys.stdin.readline
 
+N = int(read())
+cache =[list(map(int, read().split())) for _ in range(N)]
 
-N = int(input()) 
-mat = [ list( map(int,input().split())) for _ in range(N) ] 
-#print(mat) 
-R = N ; C =3 
-dp = [ [0]*C  for _ in range(N) ] 
-dp[0] = mat[0] 
-
-for r in range(1,R):
-    for c in range(C):
-        
-        if c==0:
-            dp[r][c] = mat[r][c] + min( dp[r-1][1] , dp[r-1][2] ) 
-        elif c==1: 
-            dp[r][c] = mat[r][c] + min( dp[r-1][0] , dp[r-1][2] ) 
-        else: # c==2:
-            dp[r][c] = mat[r][c] + min( dp[r-1][0] , dp[r-1][1] ) 
-
-#print(dp) 
-print( min( dp[R-1] )) 
-
+for i in range(1, N):
+    cache[i][0] += min(cache[i-1][1], cache[i-1][2])
+    cache[i][1] += min(cache[i-1][0], cache[i-1][2])
+    cache[i][2] += min(cache[i-1][0], cache[i-1][1])
+print(min(cache[-1]))
