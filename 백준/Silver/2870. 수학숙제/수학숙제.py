@@ -1,26 +1,12 @@
 
-
-
-
 import re
-
-p  = re.compile('[0-9]+') 
-
-twl = [] 
-N = int(input()) 
-
-for _ in range(N):
-
-    text = input() 
-    wl =  p.findall(text)
-    wl =  list( map(int, wl )) 
-    twl += wl 
-
-
-twl.sort()  
-for n in twl:
-    print(n) 
-
+n = int(input()); paper = []; res = str()
+for i in range(n):
+    for j in list(re.split("\\D", str(input()))):
+        if j!="": paper.append(int(j))
+paper.sort()
+for i in paper: res+=str(i)+"\n"
+print(res)
 
 
 
