@@ -1,19 +1,21 @@
-#include <iostream>
-using namespace std;
+#include <cstdio>
 
+int d[1001];
 
-int dp[1001] ;
+int solve(int n) {
+    d[0] = d[1] = 1;
+    for (int i=2; i<=n; i++) {
+        d[i] = d[i-1]+2*d[i-2];
+        d[i] %= 10007;
+    }
+    return d[n];
+}
 
 int main() {
-
-	int N;
-	cin >> N; 
-	
-	dp[1] =1;
-	dp[2] =3;
-	for( int i =3; i <=N ; i++){
-		dp[i] = (dp[i-1] + 2*dp[i-2] )%10007 ; }
-
-	cout << dp[N] ;
-
+    int n;
+    scanf("%d", &n);
+    printf("%d\n", solve(n));
+    return 0;
 }
+
+
