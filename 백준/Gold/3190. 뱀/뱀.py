@@ -1,70 +1,60 @@
+
+import sys 
+input = sys.stdin.readline
 from collections import deque 
 
-N = int(input())
-Napple = int(input())
-appleinfo = [ list( map(int,input().split())) for _ in range(Napple) ]
-Ndir =  int(input())
-dirInfo = [ list( input().split() ) for _ in range(Ndir) ] 
+N = int(input()) 
+apN = int(input()) 
+appleInfo =  [ list( map(int,input().split())) for _ in range(apN) ] 
+dirN = int(input()) 
+dirInfo  = [ list( input().split()) for _ in range(dirN) ] 
+
 
 mat = [ [0]*N for _ in range(N) ] 
-for a, b in appleinfo:
-    mat[a-1][b-1] = 'A'
+for x, y in appleInfo:
+    mat[x-1][y-1] = 1 
+
+dir = {0:[0,-1] , 1:[-1,0] , 2:[0,1] , 3:[1,0] }
 
 
-def simul(x,y):
-
-    snake =1
-    dir = {0:[0,1] , 1:[1,0] , 2:[0,-1] , 3:[-1,0] }
-    cdir = 0
-    visit = deque()
-    time = 0
-    for t , ndir in dirInfo:
-
-        t = int(t)
-        ad = 1 if ndir=='D' else -1
-        while time !=t:
-
-            if x <0 or x>=N or y < 0 or y>=N:
-                return time
-
-            if visit and  [x,y] in visit:
-                return time
-
-            if mat[x][y] =='A':
-                snake +=1
-                mat[x][y] =0
-            elif visit:
-                visit.popleft()
 
 
-            a, b = dir[cdir%4]
-            visit.append([x,y])
-            x += a ; y +=b
-            time +=1
 
-        cdir += ad
-
+def simul():
+    q = deque()  
+    q.append([0,0] ) 
+    x  = y = 0 
+    t = 0  
+    i = 0 
+    d = 2   
+    a, b = dir[d] 
+    nx , ny = x+a , y+b  
     while True:
 
-            if x <0 or x>=N or y < 0 or y>=N:
-                return time
+        if  nx <0 or nx>=N or ny <0 or ny >= N  or [nx,ny] in q:
 
-            if visit and  [x,y] in visit:
-                return time
+            return t +1 
+        
+        if mat[nx][ny] ==1:
+            q.append([nx,ny]) 
+            mat[nx][ny] = 0 
+        else: 
+            q.append([nx,ny]) 
+            q.popleft() 
+        
+        t +=1 
+        if i<len(dirInfo) and t== int(dirInfo[i][0]): 
+           
+            if  dirInfo[i][1] =='D':
+                d+=1 
+            else: 
+                d-=1 
+            i +=1 
 
-            if mat[x][y] =='A':
-                snake +=1
-                mat[x][y] =0
-            elif visit:
-                visit.popleft()
+        a ,b = dir[d%4] 
+        nx += a ; ny +=b 
+
+print(simul()) 
 
 
-            a, b = dir[cdir%4]
-            visit.append([x,y])
-            x += a ; y +=b
-            time +=1
 
-
-    return time
-
-print(simul(0,0)) 
