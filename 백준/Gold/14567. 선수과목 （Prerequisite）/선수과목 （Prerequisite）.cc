@@ -1,32 +1,46 @@
-#include <iostream>
+#include <cstdio>
+#include <queue>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
+int N , M , ans[1001] , inDegree[1001]; 
+vector<int> graph[1001] ; 
 
-int main(){
+int main() { 
+	scanf("%d%d" , &N,&M ) ; 
+	while( M --) {
+		int u ,v ; 
+		scanf("%d%d", &u,&v) ; 
+		graph[u].push_back(v) ; 
+		inDegree[v]++;  }
 
-	ios_base::sync_with_stdio(0), cin.tie(0) , cout.tie(0) ;
-
-	int N,M ; 
-	cin >>N>>M;
-
-	vector<pair<int,int>> v;
-	vector<int> dp(N+1, 1) ; 
-
-	int a,b; 
-	for( int i=0 ; i< M; i++) { 
-		cin >> a>>b;
-		v.push_back({b,a}); } 
-	
-	sort( v.begin() , v.end()) ; 
-	for ( int i = 0 ; i < M ; i++ ) { 
-		int pre = v[i].second ; 
-		int next = v[i].first ; 
-		dp[next] = max(dp[next] , dp[pre] +1 ) ; }
-
-	for (int i=1; i<= N ; i++) {
-		cout << dp[i] << " "; } 
-
-
+	queue<int> q; 
+	for(int i=1; i<=N ; i++) { 
+		if (inDegree[i]==0 ) {
+			q.push(i); 
+			ans[i] =1 ; }
+	}
+	int cur =2; 
+	while(!q.empty()){
+		int sz = q.size(); 
+		while(sz--) {
+			int qf = q.front(); 
+			q.pop() ;
+			for(auto next : graph[qf] ) {
+				if (--inDegree[next]==0) {
+					q.push(next); 
+					ans[next] = cur; }
+			}
+		}
+		cur ++;
+		}
+		for( int i=1; i<=N ; i++) {
+			printf("%d " , ans[i]) ; 
+	}
 }
+
+
+
+
+
+				
