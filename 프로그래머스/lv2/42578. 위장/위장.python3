@@ -1,0 +1,17 @@
+from collections import defaultdict 
+
+def solution(clothes):
+    
+            n = len(clothes)
+
+            dic= defaultdict(int) 
+
+            for v ,k in clothes:
+
+                dic[k] +=1 
+
+            ans =1 
+            for a in dic.values():
+                ans *= (a+1)
+
+            return ans -1
