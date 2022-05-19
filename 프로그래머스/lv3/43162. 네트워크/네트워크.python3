@@ -1,0 +1,25 @@
+def solution(n, mat):
+    
+    R = len(mat) ; C = len(mat[0])
+    for r in range(R):
+        for c in range(C):
+            if r==c:
+                mat[r][c] = 0
+                
+    visit = [False]*(len(mat))
+
+    def dfs(v):
+
+        visit[v] = True
+        for i,e in enumerate(mat[v]):
+            if mat[v][i] ==1 and not visit[i]:
+                dfs(i)
+
+
+    cnt = 0
+    for r in range(R):
+        if not visit[r]:
+            dfs(r)
+            cnt +=1
+
+    return cnt 
