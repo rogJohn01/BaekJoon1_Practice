@@ -1,0 +1,14 @@
+def solution(mat):
+     
+       
+    maxl = 0 
+    R = len(mat) ; C = len(mat[0]) 
+    dp = [ [0]* (C+1) for _ in range(R+1) ] 
+    for r in range(R):
+        for c in range(C):
+            if mat[r][c] == 1:
+                dp[r+1][c+1] = min( dp[r][c] , dp[r][c+1] , dp[r+1][c] ) + 1 
+                maxl = max(maxl , dp[r+1][c+1] ) 
+
+    return maxl**2 
+
