@@ -17,7 +17,7 @@ for n in nums:
             cnt , t = dic[n] 
             dic[n] = [cnt+1,t ] 
 
-    elif len(dic)>=N and n not in dic: 
+    else: 
         m = inf = float('inf') 
         for k , v in dic.items():
             cnt ,t = v 
