@@ -1,0 +1,34 @@
+def solution(R,  C, queries):
+
+    mat = [  [ e for e in range(i,i+C) ]    for i in range(1,R*C,C) ]
+    ans = []
+    def rotate(x1,y1,x2,y2):
+        x1 -=1 ; y1 -=1 ; x2 -=1; y2 -=1
+        dir4 = { 0:[-1,0] , 1:[0,1] , 2:[1,0] , 3:[0,-1] }
+        d = 1
+        T = (x2-x1-1)*2 + (y2-y1+1)*2
+        px , py = x1 , y1
+        x , y = x1 ,y1
+        a ,b = dir4[d]
+        prev = mat[x][y]
+        minv = mat[x][y]
+        cnt = 0 
+        while True:
+            if cnt ==4:
+                break 
+            
+            if x+a > x2 or x+a <x1 or y+b >y2 or y+b < y1:
+                d = (d+1)% 4
+                cnt +=1 
+            a ,b = dir4[d]
+            nx , ny = x+a , y+b
+            mat[nx][ny] , prev =  prev , mat[nx][ny]
+            minv = min(minv , mat[x][y])
+            x ,y = nx,ny
+
+        ans.append(minv)
+
+    for a,b,c,d in queries: 
+        rotate(a,b,c,d)
+
+    return ans 
