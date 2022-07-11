@@ -25,19 +25,16 @@ int main() {
         for(int a=2; a<=n ; a++){
             if(rec[a]) tmp.push_back(a) ; } 
         
+        int l= n/2 , r = n/2 ;  
+        while(true) {
+            if( l+r ==n && rec[l] && rec[r]  ){
+                cout <<  l  << " " <<  r  << jl ; 
+                break ; }
+
+            l -- ; 
+            r ++ ; 
+        }
         
-        int minv = n , mx = 0 , my = 0 ; 
-        for(int x=0 ; x< tmp.size(); x++){
-            for(int y=0 ; y<tmp.size() ; y++){
-                if( tmp[x]+tmp[y] ==n){ 
-                    
-                    int tp =  abs(tmp[y]-tmp[x]) ;
-                    if(tp < minv){ 
-                        minv =tp;
-                        mx = tmp[x] ; my = tmp[y] ; 
-                    } }}}
-                     
-        cout << mx << " " <<  my  << jl ; 
 
     }
 } 
