@@ -11,6 +11,10 @@
 using namespace std; 
 
 int main() { 
+    
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
 
     int T,n ; cin >> T ; 
     vector<int> nums ; 
@@ -18,7 +22,6 @@ int main() {
 
     cout << *min_element(nums.begin() , nums.end()) << " " ; 
     cout << *max_element(nums.begin(), nums.end()) << " "  ; 
-
 
 
 } 
