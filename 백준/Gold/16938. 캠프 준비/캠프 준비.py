@@ -1,5 +1,6 @@
 
 
+
 N ,L ,R , X = map(int, input().split())
 nums =  list( map(int,input().split())) 
 
