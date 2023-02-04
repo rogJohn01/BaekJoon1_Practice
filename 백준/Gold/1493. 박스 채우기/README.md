@@ -1,4 +1,4 @@
-# [Gold IV] 박스 채우기 - 1493 
+# [Gold III] 박스 채우기 - 1493 
 
 [문제 링크](https://www.acmicpc.net/problem/1493) 
 
