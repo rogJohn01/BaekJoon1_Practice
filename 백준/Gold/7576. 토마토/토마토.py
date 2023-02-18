@@ -1,30 +1,48 @@
-from collections import deque
+from collections import deque 
 
-m, n = map(int, input().split())
-matrix = [list(map(int, input().split())) for _ in range(n)]
-queue = deque([])
-dx, dy = [-1, 1, 0, 0], [0, 0, -1, 1]
-res = 0
 
-for i in range(n):
-    for j in range(m):
-        if matrix[i][j] == 1:
-            queue.append([i, j])
+C ,R = map(int, input().split())
+mat = [ list( map(int,input().split())) for _ in range(R) ] 
+
+Done = False 
+q = deque() 
+for r in range(R):
+    for c in range(C):
+        if mat[r][c] == 1: 
+            q.append([r,c] ) 
+        elif mat[r][c] ==0:
+            Done = True 
+
 
 def bfs():
-    while queue:
-        x, y = queue.popleft()
-        for i in range(4):
-            nx, ny = dx[i] + x, dy[i] + y
-            if 0 <= nx < n and 0 <= ny < m and matrix[nx][ny] == 0:
-                matrix[nx][ny] = matrix[x][y] + 1
-                queue.append([nx, ny])
 
-bfs()
-for i in matrix:
-    for j in i:
-        if j == 0:
-            print(-1)
-            exit(0)
-    res = max(res, max(i))
-print(res - 1)
+    while q: 
+        x,y = q.popleft() 
+
+        for a,b in [(1,0),(-1,0),(0,1),(0,-1)]:  
+            nx, ny =  x+a , y+b 
+            if 	0<= nx < R and 0 <= ny <C: 
+                if mat[nx][ny] ==0: 
+                    q.append([nx,ny]) 
+                    mat[nx][ny] = mat[x][y] +1 
+        
+  
+if not Done: 
+    print(0)
+else: 
+    bfs() 
+    maxv = 0 
+    left = False 
+    for r in range(R):
+        if left: 
+            break 
+        for c in range(C):
+            if mat[r][c] == 0:
+                left = True
+            if mat[r][c] > maxv: 
+                maxv = mat[r][c] 
+    
+    if left:
+        print(-1)
+    else: 
+       print(maxv-1)  
