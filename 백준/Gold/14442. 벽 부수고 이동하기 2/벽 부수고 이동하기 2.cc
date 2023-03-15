@@ -1,87 +1,104 @@
+
 #include <iostream>
-#include <stdio.h>
-#include <math.h>
-#include <cstring>
-#include <queue>
-#include <set>
-#include <vector>
-#include <algorithm>
-#define MAX 1001
-#define WALL 11
-#define INF 987654321
-using namespace std;
+#include <vector> 
+#include <string> 
+#include <cstring> 
+#include <algorithm> 
+#include <cmath> 
+#include <unordered_map>
+#include <map> 
+#include <queue> 
+#include <set> 
+#define jl "\n"
+using namespace std; 
 
-struct node {
-    int x,y,wall,cnt;
+
+
+int R , C , K  ; 
+int mat[1000][1000] ;
+int visited[1000][1000][10] ; 
+int x , y , d , k ; 
+
+struct box {
+    int x ; 
+    int y ; 
+    int d ; 
+    int k ; 
+} ; 
+
+int dx[] = {1,-1,0,0} ;
+int dy[] = {0, 0, 1, -1 } ; 
+
+
+
+int bfs(int r  , int c  ){
     
-    node() {}
-    node(int _x,int _y,int _wall,int _cnt) : x(_x),y(_y),wall(_wall),cnt(_cnt) {}
-};
-
-int n,m,k;
-
-int map[MAX][MAX];
-bool visited[MAX][MAX][WALL];
-
-int dx[4] = {0,0,1,-1};
-int dy[4] = {1,-1,0,0};
-
-void bfs(){
-    queue<node> q;
-    q.push(node(0,0,0,1));
-    visited[0][0][0] = true;
-    
+    queue<box> q ; 
+    box bb ;
+    bb.x = r ; bb.y = c  ;  bb.d = 0 ; bb.k = K ;  
+    q.push(bb)  ; 
     while(!q.empty()){
-        int x = q.front().x;
-        int y = q.front().y;
-        int wall = q.front().wall;
-        int cnt = q.front().cnt;
-        q.pop();
         
-        if(x == n-1 && y == m-1){
-            printf("%d\n",cnt);
-            return;
+        x = q.front().x ; 
+        y = q.front().y ; 
+        d = q.front().d ; 
+        k = q.front().k ; 
+        q.pop() ; 
+
+        if( x == R-1 && y == C-1  ){
+            return d+1 ; 
         }
-        
-        for(int i=0; i<4; i++){
-            int nx = x + dx[i];
-            int ny = y + dy[i];
-            
-            if(nx<0 || ny<0 || nx>=n || ny>=m) continue;
-            
-            // 벽을 만난 경우
-            if(map[nx][ny] == 1){
-                // 벽을 부술 수 있음!
-                if(wall < k && !visited[nx][ny][wall+1]){
-                    q.push(node(nx,ny,wall+1,cnt+1));
-                    visited[nx][ny][wall+1] = true;
+
+
+
+
+        for(int i=0 ; i < 4 ; i++){
+            int nx = x+ dx[i] ; 
+            int ny = y+ dy[i] ; 
+
+            if(0<=nx && nx < R && 0 <= ny && ny < C ){
+
+                if(mat[nx][ny] ==0 && visited[nx][ny][k] ==0 ){
+                    visited[nx][ny][k] = 1 ; 
+                    box bb ; 
+                    bb.x = nx ; bb.y = ny ; bb.d = d+1 ;  bb.k = k ; 
+                    q.push(bb ) ; 
+                } else if( mat[nx][ny] ==1 && k > 0 && visited[nx][ny][k] == 0  ) {
+                    visited[nx][ny][k] = 1 ; 
+                    box bb ; 
+                    bb.x = nx ; bb.y = ny ; bb.d = d+1 ;   bb.k = k-1 ; 
+                    q.push(bb) ; 
                 }
-            }
-            
-            // 벽이 아닌 경우
-            if(map[nx][ny] == 0 && !visited[nx][ny][wall]){
-                q.push(node(nx,ny,wall,cnt+1));
-                visited[nx][ny][wall] = true;
+
+
             }
         }
     }
-    printf("%d\n",-1);
+    return -1 ;  
 }
 
-int main(int argc, const char * argv[]) {
-    // cin,cout 속도향상
-    // ios_base::sync_with_stdio(false);
-    // cin.tie(NULL); cout.tie(NULL);
+
+
+
+
+int main() { 
     
-    cin >> n >> m >> k;
-    for(int i=0; i<n; i++){
-        for(int j=0; j<m; j++){
-            scanf("%1d",&map[i][j]);
+    memset(visited , 0 , sizeof(visited )) ; 
+    
+    cin >> R >> C >> K ; 
+    for(int r= 0 ; r < R ; r++){
+        string s ; 
+        cin >> s ; 
+        for(int c=0; c < C ; c++){
+          //  cin >> mat[r][c] ; 
+            mat[r][c] = s[c]-'0' ; 
         }
     }
-    
-    memset(visited, false, sizeof(visited));
-    bfs();
-    
-    return 0;
+    //cout << R << C  << K ; 
+
+
+      cout << bfs(0,0) ; 
+
 }
+
+
