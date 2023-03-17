@@ -1,39 +1,62 @@
+
 #include <iostream>
 #include <vector> 
 #include <string> 
+#include <cstring> 
 #include <algorithm> 
+#include <cmath> 
+#include <unordered_map>
+#include <map> 
+#include <queue> 
+#include <set> 
+#define jl "\n"
 using namespace std; 
 
-int row[14] ; 
-int ans = 0; 
-int N; 
+int board[15] ; 
+int N ; 
+int ans ; 
 
-bool possible(int x){
+bool check_pass(int x){
 
-    for(int j =0 ; j<x ; j++){
-        if( row[x] ==row[j] ||  abs(row[x] - row[j]) == abs(x-j) )
-            return false;  } 
-    return true;  } 
+    for(int j=0 ; j < x ; j++){
 
-void  nQueen(int x){
-    
-    if (x==N){
-        ans ++; }  
-
-    else { 
-        for(int i=0; i< N ; i++){
-            row[x] = i ;
-            if ( possible(x)){
-                nQueen(x+1); } }
-    }
+        if( board[x] == board[j] || ( (x-j) == abs(board[x]- board[j]) ) ){
+            return false ;
+        }
+    } return true ; 
 }
 
-int main() { 
-    cin >> N; 
+
+
+
+void Nqueen(int x){
     
-    nQueen(0); 
-    cout << ans; 
+    if( x == N ){
+        ans++ ;
+        return ; 
+    }
+    
+    for(int i=0; i < N ; i++){
+        board[x] = i ; 
+        if(check_pass(x)){
+            Nqueen(x+1) ; 
+        }
+    }
+
+}
 
 
-} 
+
+
+int main() { 
+
+    cin >> N ; 
+
+    
+    Nqueen(0) ;
+    cout << ans ; 
+
+
+}
+
 
