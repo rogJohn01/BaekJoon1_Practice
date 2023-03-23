@@ -1,17 +1,10 @@
+import java.io.*;
+import java.util.*;
 
-import java.util.Scanner ; 
-
-
-class Main {
-    public static void main(String[] args) {
- 
-        
-        Scanner scan = new Scanner(System.in) ; 
-
-        String s = scan.nextLine() ; 
-
-        System.out.println(s.length()) ; 
-    
-
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String s = br.readLine();  //단어 입력받기
+        System.out.print(s.length());
     }
 }
