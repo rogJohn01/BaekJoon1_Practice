@@ -1,50 +1,75 @@
-#include <bits/stdc++.h>
-using namespace std;
- 
-#define x first
-#define y second
- 
-int n;  // 체스판의 크기
-int board[10][10];  // 체스판
-bool isused1[20];   // 우상향 대각선에 대한 상태 배열
-bool isused2[20];   // 좌상향 대각선에 대한 상태 배열
- 
-int ans = 0;
-void bishop(int th, int size){  // th는 우상향 대각선의 index, size는 이전에 선택한 비숍의 개수
-    if(th >= 2 * n - 1){    
-        ans = max(ans , size); 
-    }else{
-        bool flag = false;  // th번째 대각선에서 비숍을 놓았는지를 나타내는 flag
- 
-        for(int j = 0; j < n - abs(th - (n- 1)); j++){   
-            int x = (n - 1 <= th) ? n - 1 - j : th - j;
-            int y = (n - 1 <= th) ? th - (n - 1) + j : j;  
- 
-            // 비숍을 놓을 수 있으면서, 우상향 대각선과 좌상향 대각선에 비숍이 없는 경우
-            if(board[x][y] == 1 && !isused1[th] && !isused2[n - 1 + (x - y)]){  
-                flag = true;    
-                isused1[th] = true; // 비숍을 놓는 위치에 해당하는 우상향 대각선에 true를 표시
-                isused2[n - 1 + (x - y)] = true;    // 좌상향 대각선에 true를 표시
-                bishop(th + 1, size + 1); 
-                isused1[th] = false;    // 우상향 대각선을 false로 복구
-                isused2[n - 1 + (x - y)] = false; // 좌상향 대각선을 false로 복구
-            }
+
+#include <iostream>
+#include <vector> 
+#include <string> 
+#include <cstring> 
+#include <algorithm> 
+#include <cmath> 
+#include <unordered_map>
+#include <map> 
+#include <queue> 
+#include <set> 
+#define jl "\n"
+using namespace std; 
+
+int N ; 
+int mat[10][10] ; 
+int ans ; 
+int LR[100][2] ;
+int RL[100][2] ; 
+
+
+
+void backtrack(int row , int col , int cnt , int color){
+    
+    if(col >=N){
+        row ++ ; 
+        if(col % 2 ==0){
+            col = 1 ;
+        } else {
+            col = 0 ; 
         }
-        // th 번째 대객선에서 비숍을 놓지 않았다면, size를 늘리지 않고, th + 1번째 비숍을 선택
-        if(!flag) bishop(th + 1, size); 
     }
- 
+    
+    if(row >=N){
+        ans = max(ans , cnt) ; 
+        return ; 
+    }
+
+
+    if(  (mat[row][col] ==1) &&  !LR[row-col+N][color] && !RL[row+col][color] ){
+        LR[row-col+N][color] = RL[row+col][color] =1  ; 
+        backtrack(row , col+2 , cnt+1 , color) ;
+        LR[row-col+N][color] = RL[row+col][color] = 0   ; 
+    }
+    backtrack(row,col+2, cnt , color) ; 
+
+
 }
- 
-int main(){
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    cin >> n;
- 
-    for(int i =0 ; i < n; i++)  // 체스판 입력 받음
-        for(int j = 0; j < n; j++)
-            cin >> board[i][j];
- 
-    bishop(0, 0);
-    cout << ans;
+
+
+
+
+int main() { 
+
+
+    cin >> N ; 
+    for(int r=0; r < N ; r++){
+        for(int c=0; c < N ; c++){
+            cin >>  mat[r][c] ; 
+        }
+    }
+
+    ans = 0 ;
+    backtrack(0,0,0,0) ; 
+    int black = ans ; 
+    ans = 0 ;
+    backtrack(0,1,0,1) ; 
+    int white = ans ; 
+    cout << black + white << endl ; 
+    
+
+
 }
+
+
