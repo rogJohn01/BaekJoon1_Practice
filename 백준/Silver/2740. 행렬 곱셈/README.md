@@ -8,7 +8,7 @@
 
 ### 분류
 
-구현(implementation), 선형대수학(linear_algebra), 수학(math)
+구현, 선형대수학, 수학
 
 ### 문제 설명
 
