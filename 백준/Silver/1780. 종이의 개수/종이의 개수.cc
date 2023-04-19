@@ -80,9 +80,9 @@ int main() {
     }
     divide(0,0,N) ;
 
-    cout << mone << endl ; 
-    cout << zero << endl; 
-    cout << one << endl ; 
+    cout << mone << jl ; 
+    cout << zero << jl ; 
+    cout << one << jl ; 
 
 
 }
