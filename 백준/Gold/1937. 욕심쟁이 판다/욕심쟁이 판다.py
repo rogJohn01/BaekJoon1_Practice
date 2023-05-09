@@ -1,28 +1,22 @@
-
 import sys
-input = sys.stdin.readline
-sys.setrecursionlimit(10**6)
 
-n = int(input())
-board = [list(map(int,input().split())) for _ in range(n)]
-dp = [[-1]*n for _ in range(n)]
-move = [(0,1),(1,0),(0,-1),(-1,0)]
-ans = 0
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
 
-def dfs(x,y):
-    if dp[x][y] == -1:
-        dp[x][y] = 0
-        
-        for a,b in move:
-            dx=x+a; dy=y+b
-            if n>dx>=0 and n>dy>=0 and board[dx][dy] > board[x][y]:
-                dp[x][y] = max(dp[x][y],dfs(dx,dy))
-    
-    return dp[x][y]+1
+n = int(sys.stdin.readline())
+bamboo = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
+dp = [[1]*n for _ in range(n)]
 
-for i in range(n):
-    for j in range(n):
-        ans = max(ans,dfs(i,j))
-            
-print(ans)
+# List of all cells
+cells = [(bamboo[i][j], i, j) for i in range(n) for j in range(n)]
+# Sort cells in ascending order of their values
+cells.sort()
+
+for _, x, y in cells:
+    for i in range(4):
+        nx, ny = x + dx[i], y + dy[i]
+        if 0 <= nx < n and 0 <= ny < n and bamboo[x][y] < bamboo[nx][ny]:
+            dp[nx][ny] = max(dp[nx][ny], dp[x][y] + 1)
+
+print(max(max(row) for row in dp))
 
