@@ -1,6 +1,7 @@
 #include<iostream>
 #include<algorithm>
 #include<vector>
+#include<cstring> 
 using namespace std;
 #define INF 1000000000
 
@@ -9,6 +10,9 @@ int sum[501], file[501], dp[501][501];
 
 int main()
 {
+
+
+  memset(dp, 0 , sizeof(dp)) ;
 	cin >> T;
 
 	while (T--)
