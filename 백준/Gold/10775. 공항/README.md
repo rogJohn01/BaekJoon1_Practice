@@ -8,7 +8,7 @@
 
 ### 분류
 
-자료 구조(data_structures), 분리 집합(disjoint_set), 그리디 알고리즘(greedy)
+자료 구조, 분리 집합, 그리디 알고리즘
 
 ### 문제 설명
 
