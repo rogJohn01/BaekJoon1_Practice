@@ -1,4 +1,4 @@
-# [Silver IV] 주유소 - 13305 
+# [Silver III] 주유소 - 13305 
 
 [문제 링크](https://www.acmicpc.net/problem/13305) 
 
@@ -8,7 +8,7 @@
 
 ### 분류
 
-그리디 알고리즘(greedy)
+그리디 알고리즘
 
 ### 문제 설명
 
