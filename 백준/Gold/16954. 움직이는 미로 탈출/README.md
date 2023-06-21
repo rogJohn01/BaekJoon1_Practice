@@ -1,4 +1,4 @@
-# [Gold IV] 움직이는 미로 탈출 - 16954 
+# [Gold III] 움직이는 미로 탈출 - 16954 
 
 [문제 링크](https://www.acmicpc.net/problem/16954) 
 
@@ -8,7 +8,7 @@
 
 ### 분류
 
-너비 우선 탐색(bfs), 그래프 이론(graphs), 그래프 탐색(graph_traversal)
+너비 우선 탐색, 그래프 이론, 그래프 탐색
 
 ### 문제 설명
 
