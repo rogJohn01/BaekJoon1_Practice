@@ -1,4 +1,4 @@
-# [Gold V] 숨바꼭질 2 - 12851 
+# [Gold IV] 숨바꼭질 2 - 12851 
 
 [문제 링크](https://www.acmicpc.net/problem/12851) 
 
@@ -8,7 +8,7 @@
 
 ### 분류
 
-너비 우선 탐색(bfs), 그래프 이론(graphs), 그래프 탐색(graph_traversal)
+너비 우선 탐색, 그래프 이론, 그래프 탐색
 
 ### 문제 설명
 
