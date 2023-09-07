@@ -1,17 +1,31 @@
-from collections import Counter 
-import sys 
-input = sys.stdin.readline 
+from collections import defaultdict
 
-n = int(input())
-nums =  list( map(int,input().split())) 
-ans = [ -1 for _ in range(n)]
+N = int(input())
+arr = list( map(int, input().split()) ) 
+
+
+
+arr_ln = len(arr)
+
+ans = [0]*arr_ln
+mp = defaultdict(int)
+for a in arr: 
+    mp[a] +=1 
+
+
 
 st = [] 
-dic = Counter(nums)
-for i in range(n):
+for i in range(arr_ln):
 
-	while st and  dic[nums[st[-1]]] < dic[nums[i]]:
-		ans[st.pop()] = nums[i]
-	st.append(i)
+    while st and mp[arr[st[-1]]] < mp[arr[i]]:
+        ix = st.pop()
+        ans[ix] = arr[i]
+
+    st.append(i)
+
+
+while st: 
+    ix =st.pop()
+    ans[ix] = -1 
 
 print(*ans)
